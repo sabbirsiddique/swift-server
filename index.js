@@ -28,9 +28,17 @@ async function run() {
         await client.connect();
 
         const featuresCollection = client.db("swiftDb").collection("features");
+        const deliveryManCollection = client.db("swiftDb").collection("deliveryman");
+        
+
 
         app.get('/features', async(req,res)=>{
             const result = await featuresCollection.find().toArray([]);
+            res.send(result)
+        })
+
+        app.get('/topdeliveryman', async(req,res)=>{
+            const result = await deliveryManCollection.find().toArray([]);
             res.send(result)
         })
 
